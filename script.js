@@ -45,6 +45,22 @@ btn3.onclick = almacenarDatos;
 //Funciones
 function botonClick(){
     const input = prompt("Ingrese un número entre 1 y 4 o el uso que quiera darle para activar el cronómetro");
+    
+    if (input == 1 || input.toLocaleLowerCase() == "cronometro"){
+        alert("Usted eligió el cronómetro normal");
+    }
+    else if (input == 2 || input.toLowerCase() == "pomodoro"){
+    alert("Usted eligió el cronómetro Pomodoro");
+    }
+    else if (input == 3 || input.toLocaleLowerCase() == "alarma"){
+        alert("Usted eligió la alarma");
+    }
+    else if (input == 4 || input.toLocaleLowerCase() == "terminar"){
+        alert("Gracias por usar el crónometro online");
+    }
+    else{
+        alert("Seleccione un valor válido");
+    }
 }
 
 
