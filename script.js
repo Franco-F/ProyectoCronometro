@@ -71,8 +71,44 @@ function monstrarTiempo(){
 function almacenarDatos(){
     const nombre = prompt("Ingrese su nombre");
     sessionStorage.setItem("Nombre", nombre);
-    const saludo = alert(`Hola, ${sessionStorage.getItem("Nombre")}`);
 }
 
 
 //Fin funciones
+
+
+//Librerias
+
+btn1.addEventListener("click", () =>{
+    Toastify({
+        text: "¡El cronómetro empezó!",
+        duration: 2000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        onclick: ()=>{}
+    }).showToast();
+});
+
+btn2.addEventListener("click", () =>{
+    Toastify({
+        text: "¡El cronómetro terminó!",
+        duration: 2000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        onclick: ()=>{}
+    }).showToast();
+});
+
+btn3.addEventListener("click", () =>{
+    Toastify({
+        text: `Hola, ${sessionStorage.getItem("Nombre")}`,
+        duration: 2000,
+        gravity: "top",
+        position: "right",
+        onclick: ()=>{}
+    }).showToast();
+})
+
+//Fin librerias
