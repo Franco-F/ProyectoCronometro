@@ -17,29 +17,35 @@ const btn3 = document.createElement("button");
 const inicio = document.getElementById("inicio");
 const tiempo = document.createElement("div");
 const pTiempo = document.createElement("p");
+const divBtn = document.querySelector(".botones");
+const textoTiempo = document.querySelector(".textoTiempo");
+textoTiempo.innerHTML = "00:00"
 
 
 tiempo.setAttribute("class", "tiempo");
-btn1.setAttribute("class", "boton");
+btn1.setAttribute("class", "boton inicio");
 btn1.textContent = "Iniciar";
-btn2.setAttribute("class", "boton");
+btn2.setAttribute("class", "boton terminar");
 btn2.textContent = "Terminar";
-btn3.setAttribute("class", "boton");
+btn3.setAttribute("class", "boton datos");
 btn3.textContent = "Datos";
+pTiempo.setAttribute("class", "texto")
 pTiempo.innerHTML = "Su tiempo es de 00:00:00";
 
 
 document.body.appendChild(tiempo);
-inicio.appendChild(btn1);
-inicio.appendChild(btn2);
-inicio.appendChild(btn3);
+divBtn.appendChild(btn1);
+divBtn.appendChild(btn2);
+divBtn.appendChild(btn3);
 //Fin DOM
 
 
 //Eventos
-btn1.onclick = botonClick;
-btn2.onclick = monstrarTiempo;
+btn1.addEventListener("click", cronometro);
+btn2.addEventListener("click", pararCronometro);
 btn3.onclick = almacenarDatos;
+
+
 //Fin eventos
 
 //Funciones
@@ -70,9 +76,44 @@ function monstrarTiempo(){
 
 function almacenarDatos(){
     const nombre = prompt("Ingrese su nombre");
-    sessionStorage.setItem("Nombre", nombre);
+    localStorage.setItem("Nombre", nombre);
 }
 
+m = 0;
+s = 0;
+
+function escribirTiempo(){
+    let sAux;
+    s++;
+    if(s > 59){m++; s = 0;}
+
+    if(s < 10){
+        sAux = "0" + s;
+    }
+    else{
+        sAux = s;
+    }
+
+    textoTiempo.innerHTML = m + ":" +  sAux;
+
+    storageTiempo = textoTiempo.innerHTML = m + ":" + sAux
+
+    tiempoAnterior = localStorage.setItem("Tiempo", storageTiempo);
+}
+
+function cronometro(){
+    escribirTiempo();
+    intervaloTiempo = setInterval(escribirTiempo, 1000);
+    document.querySelector(".inicio").removeEventListener("click", cronometro);
+}
+
+function pararCronometro(){
+    clearInterval(intervaloTiempo);
+    btn2.addEventListener("click", cronometro);
+
+    document.querySelector(".mostrarTiempo").appendChild(tiempoAnterior)
+
+}
 
 //Fin funciones
 
